@@ -5,10 +5,17 @@
   "projects": {
     "ng8622": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "export": true,
+          "spec": false,
+          "inlineStyle": true,
+          "prefix": "cmail"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "cmail",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
