@@ -2,6 +2,11 @@
   <cmail-header></cmail-header>
   <main class="mdl-layout__content">
     <div class="page-content">
+
+      <p>
+        {{mensagem}}
+      </p>
+
       <div class="mdl-grid">
         <form (ngSubmit)="handleCadastro()"
               [formGroup]="formCadastro">
@@ -64,9 +69,25 @@
           </cmail-form-group>
 
           <cmail-form-group labelDoCampo="Avatar" idCampo="avatar"
-          [validacao]="formCadastro.get('avatar').touched && formCadastro.get('avatar').invalid">
+          [validacao]="formCadastro.get('avatar').invalid && (formCadastro.get('avatar').dirty || formCadastro.get('avatar').touched )">
             <input formControlName="avatar" cmailFormField required type="text" name="avatar">
-            <span *ngIf="formCadastro.get('avatar').getError('required')" class="mdl-textfield__error">Informar um avatar é obrigatório!</span>
+
+            <span *ngIf="formCadastro.get('avatar').getError('required')" class="mdl-textfield__error">
+              Informar um avatar é obrigatório!
+            </span>
+
+            <span *ngIf="formCadastro.get('avatar').status === 'PENDING'" class="mdl-textfield__error mdl-textfield__checking">
+              Verificando ...
+            </span>
+
+            <span *ngIf="formCadastro.get('avatar').getError('urlInvalida')" class="mdl-textfield__error">
+              URL inválida :(
+            </span>
+
+            <span *ngIf="formCadastro.get('avatar').status === 'VALID'" class="mdl-textfield__error mdl-textfield__valid">
+              URL válida :D
+            </span>
+
           </cmail-form-group>
 
           <cmail-form-group labelDoCampo="Telefone" idCampo="telefone"
@@ -79,14 +100,17 @@
             <span *ngIf="formCadastro.get('telefone').getError('required')" class="mdl-textfield__error">
               Informar um telefone é obrigatório!
             </span>
+
             <span *ngIf="formCadastro.get('telefone').getError('minlength')" class="mdl-textfield__error">
               O telefone deve conter no mínimo
               {{formCadastro.get('telefone').getError('minlength').requiredLength}}
               caracteres
             </span>
+
             <span *ngIf="formCadastro.get('telefone').getError('maxlength')" class="mdl-textfield__error">
               O nome deve conter no max {{formCadastro.get('telefone').getError('maxlength').requiredLength}} caracteres
             </span>
+
             <span *ngIf="formCadastro.get('telefone').getError('pattern') && !formCadastro.get('telefone').getError('minlength')" class="mdl-textfield__error">
               O telefone deve conter apenas numeros!
             </span>
