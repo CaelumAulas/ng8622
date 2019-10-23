@@ -4,7 +4,7 @@
     <div class="page-content">
       <div class="mdl-grid">
         <form (ngSubmit)="handleCadastro()"
-              [formGroup]="formCadastro" >
+              [formGroup]="formCadastro">
 
           <cmail-form-group labelDoCampo="Nome" idCampo="nome"
             [validacao]="formCadastro.get('nome').touched && formCadastro.get('nome').invalid">
