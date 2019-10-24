@@ -4,11 +4,16 @@
     <div class="page-content">
 
       <ul>
-        <li *ngFor="let email of listaEmails">
-          <strong>Destinatário:</strong> {{email.destinatario}} <br>
-          <strong>Assunto:</strong> {{email.assunto}} <br>
-          <strong>Conteudo:</strong> {{email.conteudo}}
-        </li>
+        <cmail-list-item
+          *ngFor="let email of listaEmails.reverse()"
+          [destinatario]="email.destinatario"
+          [assunto]="email.assunto"
+          [conteudo]="email.conteudo"
+          [dataEnvio]="email.dataEnvio"
+          [title]="email.id"
+          (clicouNaLixeira)="apagarEmail(email.id)"
+        >
+        </cmail-list-item>
       </ul>
 
       <div class="mdl-grid">
