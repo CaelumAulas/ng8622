@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Email } from 'src/app/models/email';
 import { NgForm } from '@angular/forms';
+import { EmailService } from 'src/app/services/email.service';
 
 @Component({
   selector: 'cmail-caixa-de-entrada',
@@ -9,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class CaixaDeEntradaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private servico: EmailService) { }
 
   ngOnInit() {
   }
@@ -39,15 +40,28 @@ export class CaixaDeEntradaComponent implements OnInit {
       return
     }
 
-    this.listaEmails.push(this.email);
 
-    this.email = {
-      destinatario: '',
-      assunto: '',
-      conteudo: ''
-    }
+    this.servico
+        .enviar(this.email)
+        .subscribe(
+          (resposta) => {
+            console.log(resposta);
 
-    formEmail.reset();
+            this.listaEmails.push(this.email);
+
+            this.email = {
+              destinatario: '',
+              assunto: '',
+              conteudo: ''
+            }
+
+            formEmail.reset();
+
+          }
+          ,erro => console.log(erro)
+        )
+
+
 
   }
 

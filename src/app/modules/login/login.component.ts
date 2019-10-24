@@ -12,7 +12,7 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit {
 
   formLogin = new FormGroup({
-    email: new FormControl('lalala@cmail.com.br',
+    email: new FormControl('van@cmail.com.br',
     [
       Validators.required,
       Validators.email

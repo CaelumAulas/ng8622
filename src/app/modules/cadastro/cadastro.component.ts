@@ -88,7 +88,6 @@ export class CadastroComponent implements OnInit {
         .cadastrar(this.formCadastro.value)
         .subscribe(
           (response) => {
-            console.log(response);
             this.mensagem = `${response.email} feito com sucesso!`
           }
           , (erro: HttpErrorResponse) => {
