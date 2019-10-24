@@ -6,6 +6,7 @@ import { SharedComponentsModule } from 'src/app/components/shared-components.mod
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from 'src/app/services/login.service';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,7 +17,8 @@ import { LoginService } from 'src/app/services/login.service';
     LoginRoutingModule,
     SharedComponentsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   exports: [LoginComponent],
   providers: [

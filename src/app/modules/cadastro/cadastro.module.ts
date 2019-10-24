@@ -5,6 +5,7 @@ import { SharedComponentsModule } from 'src/app/components/shared-components.mod
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { CadastroRoutingModule } from './cadastro-routing.module';
+import { UserService } from 'src/app/services/user.service';
 
 
 @NgModule({
@@ -16,6 +17,9 @@ import { CadastroRoutingModule } from './cadastro-routing.module';
     HttpClientModule,
     CadastroRoutingModule
   ],
-  exports: [CadastroComponent]
+  exports: [CadastroComponent],
+  providers: [
+    UserService
+  ]
 })
 export class CadastroModule { }

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { UserInputDTO } from 'src/app/models/dto/user-input';
-import { UserOutputDTO } from 'src/app/models/dto/user-output';
 
 import { map, catchError } from "rxjs/operators";
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'cmail-cadastro',
@@ -49,7 +48,8 @@ export class CadastroComponent implements OnInit {
 
   mensagem = "";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private service: UserService) { }
 
   ngOnInit() {
     //console.log(this.formCadastro.get('nome'));
@@ -84,14 +84,10 @@ export class CadastroComponent implements OnInit {
       return
     }
 
-    //DTO - data transfer object
-    const user = new UserInputDTO(this.formCadastro.value)
-
-    this.http
-        .post('http://localhost:3200/users',
-              user)
+    this.service
+        .cadastrar(this.formCadastro.value)
         .subscribe(
-          (response: UserOutputDTO) => {
+          (response) => {
             console.log(response);
             this.mensagem = `${response.email} feito com sucesso!`
           }
@@ -100,8 +96,6 @@ export class CadastroComponent implements OnInit {
             this.mensagem = `${erro.error.body[0].message}`
           }
         )
-
-    console.log(this.formCadastro.value);
 
     this.formCadastro.reset();
   }
