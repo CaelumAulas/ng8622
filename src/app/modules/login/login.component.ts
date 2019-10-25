@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -23,8 +22,7 @@ export class LoginComponent implements OnInit {
 
   mensagemErro = ""
 
-  constructor(private http: HttpClient,
-              private roteador: Router,
+  constructor(private roteador: Router,
               private service: LoginService) { }
 
   ngOnInit() {}
@@ -40,7 +38,8 @@ export class LoginComponent implements OnInit {
         .autenticar(this.formLogin.value)
         .subscribe(
           (response: any) => {
-            this.roteador.navigate(['inbox']);
+            console.log('logou');
+            this.roteador.navigate(['']);
           },
           erro => {
             console.log(erro)

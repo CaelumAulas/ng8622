@@ -10,9 +10,9 @@ import { Observable } from 'rxjs';
 export class EmailService {
 
   private url = environment.apiURL +'emails/'
-  private auth = { 'Authorization': localStorage.getItem('cmail-token') }
+  private auth = new HttpHeaders({ 'Authorization': localStorage.getItem('cmail-token') })
   private cabecalho = {
-    headers: new HttpHeaders(this.auth)
+    headers: this.auth
   }
 
   constructor(private http: HttpClient) { }
@@ -53,5 +53,12 @@ export class EmailService {
 
   deletar(id){
     return this.http.delete(this.url+id,this.cabecalho)
+  }
+
+  validaToken(){
+    return this.http.head(this.url, {
+      headers: this.auth,
+      observe: 'response'
+    })
   }
 }

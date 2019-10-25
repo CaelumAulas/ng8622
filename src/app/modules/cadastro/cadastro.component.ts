@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { map, catchError } from "rxjs/operators";
 import { UserService } from 'src/app/services/user.service';
+import { PageDataService } from 'src/app/services/page-data.service';
 
 @Component({
   selector: 'cmail-cadastro',
@@ -49,10 +50,12 @@ export class CadastroComponent implements OnInit {
   mensagem = "";
 
   constructor(private http: HttpClient,
-              private service: UserService) { }
+              private service: UserService,
+              private pageDataService: PageDataService) { }
 
   ngOnInit() {
     //console.log(this.formCadastro.get('nome'));
+    this.pageDataService.defineTitulo('Cadastro')
   }
 
   validaImagem(control: FormControl ) {

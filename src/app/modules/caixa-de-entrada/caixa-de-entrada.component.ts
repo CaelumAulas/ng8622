@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Email, EmailForm } from 'src/app/models/email';
 import { NgForm } from '@angular/forms';
 import { EmailService } from 'src/app/services/email.service';
+import { PageDataService } from 'src/app/services/page-data.service';
 
 @Component({
   selector: 'cmail-caixa-de-entrada',
@@ -16,10 +17,15 @@ import { EmailService } from 'src/app/services/email.service';
 })
 export class CaixaDeEntradaComponent implements OnInit {
 
-  constructor(private servico: EmailService) { }
+  constructor(private servico: EmailService
+              ,private pageDataService: PageDataService) {
+
+
+              }
 
   ngOnInit() {
     this.listarEmails();
+    this.pageDataService.defineTitulo("Caixa de Entrada")
   }
 
   listaEmails = []

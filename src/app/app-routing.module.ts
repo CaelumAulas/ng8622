@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { EmailService } from './services/email.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   {
@@ -30,13 +32,15 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   exports: [
     RouterModule
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    EmailService
   ]
 })
 export class AppRoutingModule {
