@@ -1,11 +1,13 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-  <cmail-header></cmail-header>
+
+  <cmail-header (filtro)="termoFiltro = $event"></cmail-header>
+
   <main class="mdl-layout__content">
     <div class="page-content">
 
       <ul>
         <cmail-list-item
-          *ngFor="let email of listaEmails.reverse()"
+          *ngFor="let email of filtrarEmails().reverse()"
           [destinatario]="email.destinatario"
           [assunto]="email.assunto"
           [conteudo]="email.conteudo"

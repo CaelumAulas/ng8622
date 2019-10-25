@@ -28,7 +28,7 @@ export class CaixaDeEntradaComponent implements OnInit {
     this.pageDataService.defineTitulo("Caixa de Entrada")
   }
 
-  listaEmails = []
+  listaEmails: Email[] = [];
 
   email: EmailForm= {
     destinatario: '',
@@ -37,6 +37,8 @@ export class CaixaDeEntradaComponent implements OnInit {
   }
 
   private _isEmailOpen = false;
+
+  termoFiltro = "";
 
   get isEmailOpen() {
     return this._isEmailOpen;
@@ -94,5 +96,19 @@ export class CaixaDeEntradaComponent implements OnInit {
     }
 
   }
+
+  filtrarEmails(){
+
+    return this.listaEmails
+                .filter(
+                  (email) => {
+                    if(email.destinatario.includes(this.termoFiltro)){
+                      return email
+                    }
+                  }
+                )
+  }
+
+
 
 }

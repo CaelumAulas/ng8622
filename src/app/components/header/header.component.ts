@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { PageDataService } from 'src/app/services/page-data.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class HeaderComponent {
 
   isMenuOpen = false;
   tituloHeader = "";
+  @Output() filtro = new EventEmitter<string>();
 
   constructor(private pageDataService: PageDataService){
     this.pageDataService
@@ -26,5 +27,9 @@ export class HeaderComponent {
 
   toggleMenu () {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  getTermoDeFiltro(evento){
+    this.filtro.emit(evento.target.value);
   }
 }
