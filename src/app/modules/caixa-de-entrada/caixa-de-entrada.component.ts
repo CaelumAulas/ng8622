@@ -99,10 +99,25 @@ export class CaixaDeEntradaComponent implements OnInit {
 
   filtrarEmails(){
 
+    const filtro = this.termoFiltro.toLowerCase()
+
     return this.listaEmails
                 .filter(
                   (email) => {
-                    if(email.destinatario.includes(this.termoFiltro)){
+                    if(email.destinatario
+                            .toLowerCase()
+                            .includes(filtro)
+                        ||
+
+                      email.assunto
+                        .toLowerCase()
+                        .includes(filtro)
+                      ||
+
+                      email.conteudo
+                        .toLowerCase()
+                        .includes(filtro)
+                      ){
                       return email
                     }
                   }

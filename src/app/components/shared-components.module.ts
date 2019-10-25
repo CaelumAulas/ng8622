@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormFieldDirective } from './form-group/form-field.directive';
 import { ListItemComponent } from './list-item/list-item.component';
+import { MarcadorPipe } from './list-item/marcador.pipe';
 
 
 
@@ -13,7 +14,8 @@ import { ListItemComponent } from './list-item/list-item.component';
     HeaderComponent,
     FormGroupComponent,
     FormFieldDirective,
-    ListItemComponent
+    ListItemComponent,
+    MarcadorPipe
   ],
   exports: [
     HeaderComponent,
